@@ -4,25 +4,28 @@
   "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
+      "image": "https://img.quizur.com/f/img60163e8ad06352.51134660.jpg?lastEdited=1612070544",
+      "title": "Qual o nome do filho de naruto?",
       "description": "Essa é pra aquecer",
       "answer": 2,
       "alternatives": [
-        ".elemento",
-        "*elemento",
-        "#elemento",
-        "%elemento"
+        "Noruto",
+        "Soruto",
+        "Kakuzu",
+        "Boruto"
       ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
+      "image": "https://img.quizur.com/f/img601640015719b2.19833324.jpg?lastEdited=1612070917",
+      "title": "Naruto é que hokage?",
       "description": "Faz tempo em haha",
       "answer": 0,
       "alternatives": [
-         "background: linear-gradient(#e66465, #9198e5);",
-         "background: gradient(#e66465, #9198e5);"
+         "Primeiro",
+         "Quarto",
+         "Oitavo",
+         "Sétimo"
+         
       ]
     }
   ],
@@ -31,8 +34,8 @@
   ],
   "theme": {
     "colors": {
-      "primary": "#D54F20",
-      "secondary": "#29b6f6",
+      "primary": "#953716",
+      "secondary": "#D54F20",
       "mainBg": "#22181C",
       "contrastText": "#FFFFFF",
       "wrong": "#FF5722",
