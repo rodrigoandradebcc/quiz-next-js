@@ -9,11 +9,22 @@ import GitHubCorner from '../src/components/GitHubCorner';
 
 import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
+import AlternativesForm from '../src/components/AlternativesForm';
 
 function QuestionWidget({
-  question, totalQuestions, questionIndex, onSubmit,
+  question,
+  totalQuestions,
+  questionIndex,
+  onSubmit,
+  addResult,
 }) {
+  const [alternativeSelected, setAlternativeSelected] = React.useState(
+    undefined,
+  );
+  const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
   const questionId = `question__${questionIndex}`;
+  const isCorrect = alternativeSelected === question.answer;
+  const hasAlternativeSelected = alternativeSelected !== undefined;
   return (
     <Widget>
       <Widget.Header>
@@ -33,28 +44,61 @@ function QuestionWidget({
         <h2>{question.title}</h2>
         <p>{question.description}</p>
 
-        <form onSubmit={(infosDoEvento) => {
-          infosDoEvento.preventDefault();
-          onSubmit();
-        }}
+        <AlternativesForm
+          onSubmit={(infosDoEvento) => {
+            infosDoEvento.preventDefault();
+            setIsQuestionSubmited(true);
+
+            setTimeout(() => {
+              addResult(isCorrect);
+              onSubmit();
+              setIsQuestionSubmited(false);
+              setAlternativeSelected(undefined);
+            }, 3 * 1000);
+          }}
         >
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternativeId = `alternative_${alternativeIndex}`;
+            const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
+            const isSelected = alternativeSelected === alternativeIndex;
             return (
-              <Widget.Topic as="label" htmlFor={alternativeId}>
-                {alternative}
+              <Widget.Topic
+                as="label"
+                htmlFor={alternativeId}
+                key={alternativeId}
+                data-selected={isSelected}
+                data-status={isQuestionSubmited && alternativeStatus}
+              >
+
                 <input
-                  // style={{ display: 'none' }}
+                  style={{ display: 'none' }}
                   type="radio"
                   name={questionId}
-                  aid={alternativeId}
+                  id={alternativeId}
+                  onChange={() => {
+                    setAlternativeSelected(alternativeIndex);
+                  }}
                 />
+                {alternative}
               </Widget.Topic>
             );
           })}
 
-          <Button type="submit">CONFIRMAR</Button>
-        </form>
+          <Button
+            type="submit"
+            disabled={!hasAlternativeSelected}
+          >
+            CONFIRMAR
+
+          </Button>
+          <p>
+            selected:
+            {` ${alternativeSelected}`}
+          </p>
+          {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
+          {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
+
+        </AlternativesForm>
       </Widget.Content>
     </Widget>
   );
@@ -69,6 +113,42 @@ function LoadingWidget() {
   );
 }
 
+function ResultWidget({ results }) {
+  return (
+    <Widget>
+      <Widget.Header>Carregando ...</Widget.Header>
+      <Widget.Content>
+        <p>
+          Você acertou
+          {' '}
+          {results.reduce((somatoriaAtual, resultAtual) => {
+            const isAcerto = resultAtual === true;
+            if (isAcerto) {
+              return somatoriaAtual + 1;
+            }
+            return somatoriaAtual;
+          }, 0)}
+          {' '}
+          perguntas!
+        </p>
+        <ul>
+          {results.map((result, index) => (
+            <li key={`result__${result}`}>
+              #
+              {index + 1}
+              {' '}
+              Resultado:
+              {result === true
+                ? ' Acertou'
+                : ' Errou'}
+            </li>
+          ))}
+        </ul>
+      </Widget.Content>
+    </Widget>
+  );
+}
+
 export default function Quiz() {
   const screenStates = {
     RESULT: 'RESULT',
@@ -76,10 +156,17 @@ export default function Quiz() {
     LOADING: 'LOADING',
   };
   const [screenState, setScreenState] = React.useState(screenStates.LOADING);
+  const [results, setResults] = React.useState([]);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
   const question = db.questions[questionIndex];
+
+  function addResult(result) {
+    setResults([
+      ...results, result,
+    ]);
+  }
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -100,20 +187,20 @@ export default function Quiz() {
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
         {screenState === screenStates.QUIZ && (
-        <QuestionWidget
-          question={question}
-          totalQuestions={totalQuestions}
-          questionIndex={questionIndex}
-          onSubmit={handleSubmitQuiz}
-        />
+          <QuestionWidget
+            question={question}
+            totalQuestions={totalQuestions}
+            questionIndex={questionIndex}
+            onSubmit={handleSubmitQuiz}
+            addResult={addResult}
+          />
         )}
         {screenState === screenStates.LOADING && <LoadingWidget />}
-        {screenState === screenStates.RESULT && <div>Você acertou X questões, parabéns</div>}
+        {screenState === screenStates.RESULT && <ResultWidget results={results} />}
         <Footer />
       </QuizContainer>
 
       <GitHubCorner projectUrl="https://github.com/rodrigoandradebcc/" />
-
     </QuizBackground>
   );
 }

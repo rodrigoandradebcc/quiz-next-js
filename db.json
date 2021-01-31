@@ -7,7 +7,7 @@
       "image": "https://img.quizur.com/f/img60163e8ad06352.51134660.jpg?lastEdited=1612070544",
       "title": "Qual o nome do filho de naruto?",
       "description": "Essa é pra aquecer",
-      "answer": 2,
+      "answer": 3,
       "alternatives": [
         "Noruto",
         "Soruto",
@@ -18,14 +18,52 @@
     {
       "image": "https://img.quizur.com/f/img601640015719b2.19833324.jpg?lastEdited=1612070917",
       "title": "Naruto é que hokage?",
-      "description": "Faz tempo em haha",
-      "answer": 0,
+      "description": "Quem lembra?",
+      "answer": 2,
       "alternatives": [
          "Primeiro",
          "Quarto",
          "Oitavo",
          "Sétimo"
          
+      ]
+    },
+    {
+      "image": "https://img.quizur.com/f/img601640d3c25c81.63143171.png?lastEdited=1612071128",
+      "title": "Qual o nome da filha de naruto?",
+      "description": "Quem lembra?",
+      "answer": 0,
+      "alternatives": [
+         "Himawari",
+         "Hiwahuno",
+         "Konan",
+         "Shokaku"
+         
+      ]
+    },
+    {
+      "image": "https://img.quizur.com/f/img5ec1765280bf24.69936919.jpg?lastEdited=1589737048",
+      "title": "Que time é esse?",
+      "description": "Quem lembra?",
+      "answer": 2,
+      "alternatives": [
+         "Time 6",
+         "Time 10",
+         "Time 7",
+         "Time 4"  
+      ]
+    }
+    ,
+    {
+      "image": "https://img.quizur.com/f/img5ec17a3adfc7c1.65792464.png?lastEdited=1589738047",
+      "title": "Quem foi o primeiro(a) a se tornar chunin?",
+      "description": "Quem lembra?",
+      "answer": 3,
+      "alternatives": [
+         "Gaara",
+         "Sasuke",
+         "Lee",
+         "Shikamaru"  
       ]
     }
   ],
