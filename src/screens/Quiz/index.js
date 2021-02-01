@@ -1,6 +1,5 @@
 import React from 'react';
 import { Lottie } from '@crello/react-lottie';
-// import db from '../../../db.json';
 import Widget from '../../components/Widget';
 import QuizLogo from '../../components/QuizLogo';
 import QuizBackground from '../../components/QuizBackground';
@@ -215,7 +214,6 @@ export default function QuizPage({ externalQuestions, externalBg }) {
             addResult={addResult}
           />
         )}
-
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
         {screenState === screenStates.RESULT && <ResultWidget results={results} />}

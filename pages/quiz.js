@@ -91,10 +91,10 @@ function QuestionWidget({
             CONFIRMAR
 
           </Button>
-          <p>
+          {/* <p>
             selected:
             {` ${alternativeSelected}`}
-          </p>
+          </p> */}
           {isQuestionSubmited && isCorrect && <p>Você acertou!</p>}
           {isQuestionSubmited && !isCorrect && <p>Você errou!</p>}
 

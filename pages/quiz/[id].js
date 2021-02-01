@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-// import QuizScreen from '../../src/screens/Quiz';
+import QuizScreen from '../../src/screens/Quiz';
 
 export default function QuizDaGaleraPage({ dbExterno }) {
   // const [db, setDb] React.useState({})
@@ -8,10 +8,10 @@ export default function QuizDaGaleraPage({ dbExterno }) {
   // });
   return (
     <ThemeProvider theme={dbExterno.theme}>
-      {/* <QuizScreen
+      <QuizScreen
         externalQuestions={dbExterno.questions}
         externalBg={dbExterno.bg}
-      /> */}
+      />
     </ThemeProvider>
     // {/* <pre style={{ color: 'black' }}>
     //   {JSON.stringify(dbExterno.questions, null, 4)}
