@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import QuizLogo from '../src/components/QuizLogo';
 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
@@ -30,8 +31,9 @@ export default function Home() {
 
   return (
     <QuizBackground backgroundImage={db.bg}>
+
       <Head>
-        <title>Naruto Quiz</title>
+        {db.title}
       </Head>
       <QuizContainer>
         <Widget
